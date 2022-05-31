@@ -5,21 +5,54 @@
         <link rel="stylesheet" href="style.css">
     </head>
     <body>
-        <input type="text" class="dateOfCreate">
-        <input type="text" class="dateOfOut">
-        <input type="text" class="caption">
-        <input type="text" class="status">
+        <input type="text" class="dateOfCreate" value="дата создания ">
+        <input type="text" class="dateOfOut" value="срок выполнения ">
+        <input type="text" class="caption" value="наименование ">
+        <input type="text" class="status_flag" value="флаг состояния ">
 
-        <button class="button_save">Сохранить</button>
+        <button class="button_save" onclick="add_task()">Добавить</button>
+
+        <button class="debug" onclick="refresh()">Обновить</button>
+
+        <br>
+
+        <div class="panel">
+            <button class="filter_all">Показать все</button>
+            <button class="filter_inProgress">Показать выполняемые</button>
+            <button class="filter_complete">Показать выполненные</button>
+            <button class="delete_all">Удалить все</button>
+        </div>
 
         <br>
 
         <ul class="list_todos">
-            <li class="tast">date date caption status <button class="inProgress">Приступить</button><button class="complete">Выполнено</button></li>
-            <li class="tast"></li>
-            <li class="tast"></li>
-            <li class="tast"></li>
-            <li class="tast"></li>
+            <li class="task">
+                date date caption status 
+                <button class="inProgress" onClick="setInProgress()">Приступить</button>
+                <button class="complete">Выполнено</button>
+                <button class="delete">Удалить</button>
+            </li>
+
+            <li class="task">
+                date date caption status 
+                <button class="inProgress">Приступить</button>
+                <button class="complete">Выполнено</button>
+                <button class="delete">Удалить</button>
+            </li>
+
+            <li class="task">
+                date date caption status 
+                <button class="inProgress">Приступить</button>
+                <button class="complete">Выполнено</button>
+                <button class="delete">Удалить</button>
+            </li>
+
+            <li class="task">
+                date date caption status 
+                <button class="inProgress">Приступить</button>
+                <button class="complete">Выполнено</button>
+                <button class="delete">Удалить</button>
+            </li>
         </ul>
     </body>
 </html>

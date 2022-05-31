@@ -1,3 +1,14 @@
 button{
     height: 20px;
 }
+
+.panel{
+    background-color: gray;
+    width: fit-content;
+    margin:5px;
+    padding:5px;
+}
+
+.task{
+    margin: 5px;
+}
