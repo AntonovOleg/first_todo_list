@@ -3,8 +3,24 @@
         <title>Список дел v0.1</title>
         <script src="main.js"></script>
         <link rel="stylesheet" href="style.css">
+        <link rel="stylesheet" href="customLibs/custom_ul_li.css">       
     </head>
     <body>
-        
+        <input type="text" class="dateOfCreate" value="" placeholder="Дата создания">
+        <input type="text" class="dateOfOut" value="" placeholder="Срок выполнения">
+        <input type="text" class="caption" value="" placeholder="Наименование">
+        <input type="text" class="statusFlag" value="Не выполен" placeholder="Статус задания">
+        <button class="button_save" onclick="addTask()">Добавить</button>
+        <button onclick="refresh()">Обновить</button>
+        <br>
+        <div class="panel">
+            <button class="filter_all" onclick="refreshList(0)">Показать все</button>
+            <button class="filter_inProgress" onclick="refreshList(1)">Показать выполняемые</button>
+            <button class="filter_complete" onclick="refreshList(2)">Показать выполненные</button>
+            <button class="delete_all" onclick="deleteAll()">Удалить все</button>
+        </div>
+        <br>
+        <ul class="listTodos list1a">
+        </ul>
     </body>
 </html>
