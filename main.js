@@ -2,7 +2,7 @@ let todo = { //экземпляр задания
     dateOfCreate: '',
     dateOfOut: '',
     caption: '',
-    status_flag: '', //1 - доступна, 2 -  в процессе, 3 - выполнено
+    status_flag: '',
 }
 
 //конструктор заданий
@@ -14,18 +14,11 @@ function task(dateOfCreate, dateOfOut, caption, status_flag){
 }
 
 let todos = [] //массив заданий
-<<<<<<< HEAD
 
 function refresh_list(filter_mode){
     //обновление дом в соответствии с данными в массиве 
 
     let todos_dom = document.getElementsByClassName('list_todos')[0];
-    
-    //не работает тк удаляется структура дом
-    // for (i in document.getElementsByClassName('task')){
-    //     console.debug('iter for');
-    //     todos_dom.removeChild(i);
-    // }
 
     //получаем количество заданий
     let count_tasks = todos_dom.getElementsByClassName('task').length;
@@ -72,8 +65,6 @@ function refresh_list(filter_mode){
                 let text = document.createTextNode(todos[i].dateOfCreate +'| ' + todos[i].dateOfOut +'| '+ todos[i].caption + '| '+todos[i].status_flag);
                 obj.appendChild(text);
 
-                //obj.innerHTML+='<button class="inProgress">Приступить</button><button class="complete">Выполнено</button><button class="delete">Удалить</button>'
-
                 let btn1 = document.createElement('button');
                 btn1.classList.add('inProgress');
                 btn1.innerText='Приступить';
@@ -101,8 +92,6 @@ function refresh_list(filter_mode){
                 obj.classList.add('task');
                 let text = document.createTextNode(todos[i].dateOfCreate +'| ' + todos[i].dateOfOut +'| '+ todos[i].caption + '| '+todos[i].status_flag);
                 obj.appendChild(text);
-
-                //obj.innerHTML+='<button class="inProgress">Приступить</button><button class="complete">Выполнено</button><button class="delete">Удалить</button>'
 
                 let btn1 = document.createElement('button');
                 btn1.classList.add('inProgress');
@@ -229,5 +218,3 @@ function delete_all(){
         todos.splice(0,todos.length);
     }
 }
-=======
->>>>>>> 2e6d1321d2cb362555fe93e7c862ec1a4903e5a9
