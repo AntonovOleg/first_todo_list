@@ -14,6 +14,7 @@ function task(dateOfCreate, dateOfOut, caption, status_flag){
 }
 
 let todos = [] //массив заданий
+<<<<<<< HEAD
 
 function refresh_list(filter_mode){
     //обновление дом в соответствии с данными в массиве 
@@ -228,3 +229,5 @@ function delete_all(){
         todos.splice(0,todos.length);
     }
 }
+=======
+>>>>>>> 2e6d1321d2cb362555fe93e7c862ec1a4903e5a9
