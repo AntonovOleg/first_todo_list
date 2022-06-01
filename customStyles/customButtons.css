@@ -1,3 +1,4 @@
+/* stock */
 .gradient-button {
     text-decoration: none;
     display: inline-block;
@@ -17,8 +18,8 @@
     background-position: right center;
   }
 
-
 /* edited */
 .gradient-button {
-    padding: 7px 30px;
+    padding: 7px 7px;
+    margin: 2px 2px;
 }

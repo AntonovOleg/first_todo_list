@@ -1,5 +1,23 @@
 button{
     height: 20px;
+    cursor: pointer;
+}
+
+a{
+    cursor: pointer;
+}
+
+li{
+    text-align: center;
+}
+
+li > button{
+    margin-left:10px;
+    width: 85px;
+}
+
+input{
+    height: 30px;
 }
 
 .panel{
@@ -22,10 +40,13 @@ button{
     text-align: center;
     vertical-align:middle;
     font-size: 22;
+    opacity:100%;
+    transition: 0.5s;
 }
 
 .hidden{
-    visibility: hidden; 
+    opacity:0; 
+    transition: 1s;
 }
 
 .contentWrapper{
@@ -53,18 +74,11 @@ button{
     font-size: 26;
 }
 
-li{
-    text-align: center;
-}
-
 .deleteAll{
     background-color: rgb(165, 0, 0);
+    margin-top: 7px;
     margin-right: 0px;
     color:azure;
     width:100px;
     float: right;
-}
-
-.debug{
-    border:1px solid red;
 }

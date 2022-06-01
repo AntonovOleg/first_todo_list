@@ -1,7 +1,12 @@
-//глобальные константы для фильтров
+//глобальные константы
+  //для фильтров
 const FILTER_MODE_ALL_TASKS = 0;
 const FILTER_MODE_INPROGRESS_TASKS = 1;
 const FILTER_MODE_COMPLETE_TASkS = 2;
+  //типы кнопок
+ const BUTTON_SET_IN_PROGRESS = 0;
+ const BUTTON_SET_COMPLETE = 1;
+ const BUTTON_DEL_ITEM = 2;
 
 //экземпляр задания
 let todo = { 
@@ -42,7 +47,11 @@ function makeTaskWithButtons(){
     let todosDom = document.getElementsByClassName('listTodos')[0];
     let currentLiElement = document.createElement('li');
     currentLiElement.classList.add('task');
-    let text = document.createTextNode(todos[currentTask].dateOfCreate +'| ' + todos[currentTask].dateOfOut +'| '+ todos[currentTask].caption + '| '+todos[currentTask].statusFlag);
+    let itemData = todos[currentTask].dateOfCreate +' | ';
+    itemData += todos[currentTask].dateOfOut +' | ';
+    itemData += todos[currentTask].caption + ' | ';
+    itemData += todos[currentTask].statusFlag;
+    let text = document.createTextNode(itemData);
     currentLiElement.appendChild(text);
 
     let btnInProgress = document.createElement('button');
@@ -96,8 +105,13 @@ function refreshList(filterMode){
                 break;
             default:
                 sendMessage('Непредвиденная ошибка');
+                break;
         }
     } 
+    //если задания не выведены то отправить сообщение "Пусто"
+    if (todosDom.getElementsByTagName('li').length === 0) {
+        sendMessage('Пусто');
+    }
 }
 
 function addTask(){
@@ -111,15 +125,23 @@ function addTask(){
         return;
     }
     
-    const newTask = new task(dateOfCreate,dateOfOut,caption,statusFlag);
+    const newTask = new task(dateOfCreate,dateOfOut,caption,statusFlag, todos.length);
     todos.push(newTask);
     refreshList(FILTER_MODE_ALL_TASKS);
+
+    let inputsDom = document.getElementsByTagName('input');
+    //в цикле очищаем все поля, кроме статуса - его ставим в "Не выполнен"
+    for(let i = 0; i < inputsDom.length-1; i++){
+        inputsDom[i].value = "";
+    }
+    inputsDom[inputsDom.length-1].value = "Не выполнен";
 }
 
 function setInProgress(){
     //проверяем какой это таск по контексту
     let context = this;
-    let num = getNumberTask(context,0);
+    //в функцию передается текущий контекст и тип нажатой кнопки
+    let num = getNumberTask(context,BUTTON_SET_IN_PROGRESS);
     //вносим изменения и обновляем
     todos[num].statusFlag = 'В процессе';
     refreshList(FILTER_MODE_ALL_TASKS);
@@ -128,7 +150,7 @@ function setInProgress(){
 function setComplete(){
     //проверяем какой это таск по контексту
     let context = this;
-    let num = getNumberTask(context,1);
+    let num = getNumberTask(context,BUTTON_SET_COMPLETE);
     //вносим изменения и обновляем
     todos[num].statusFlag = 'Выполнено';
     refreshList(FILTER_MODE_ALL_TASKS);
@@ -138,7 +160,7 @@ function deleteItem(){
     let todosDom = document.getElementsByClassName('listTodos')[0];
     //проверяем какой это таск по контексту
     let context = this;
-    let num = getNumberTask(context,2);
+    let num = getNumberTask(context,BUTTON_DEL_ITEM);
     //вносим изменения и обновляем    
     todos.splice(num,1);
     todosDom.removeChild(todosDom.getElementsByTagName('li')[num]);

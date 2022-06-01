@@ -2,8 +2,8 @@
     <head>
         <title>Список дел v0.2</title>
         <link rel="stylesheet" href="style.css">
-        <link rel="stylesheet" href="customLibs/custom_ul_li.css">    
-        <link rel="stylesheet" href="customLibs/customButtons.css">   
+        <link rel="stylesheet" href="customStyles/custom_ul_li.css">    
+        <link rel="stylesheet" href="customStyles/customButtons.css">   
     </head>
     <body>
         <div class="contentWrapper">
@@ -15,9 +15,8 @@
                 <input type="text" class="dateOfOut" value="" placeholder="Срок выполнения">
                 <input type="text" class="caption" value="" placeholder="Наименование">
                 <input type="text" class="statusFlag" value="Не выполен" placeholder="Статус задания">
-                <button class = "buttonSave">Добавить</button>
-                <button class = "buttonRefresh">Обновить</button>
-                <!-- <a class = "gradient-button" type="button">123</a> -->
+                <a class="buttonSave gradient-button">Добавить</a>
+                <a class="buttonRefresh gradient-button">Обновить</a>   
                 <br>
                 <div class="panel center">
                     Фильтры:
@@ -35,7 +34,6 @@
                 <div class="dialogMessage hidden"></div>
             </div>
         </div>
-
         <script src="main.js"></script>
     </body>
 </html>
