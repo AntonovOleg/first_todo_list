@@ -3,14 +3,6 @@ const FILTER_MODE_ALL_TASKS = 0;
 const FILTER_MODE_INPROGRESS_TASKS = 1;
 const FILTER_MODE_COMPLETE_TASkS = 2;
 
-//конструктор заданий
-function task(dateOfCreate, dateOfOut, caption, statusFlag){
-    this.dateOfCreate = dateOfCreate;
-    this.dateOfOut = dateOfOut;
-    this.caption = caption;
-    this.statusFlag = statusFlag;
-}
-
 //экземпляр задания
 let todo = { 
     dateOfCreate: '',
@@ -20,7 +12,31 @@ let todo = {
 }
 
 //массив заданий
-let todos = [] 
+let todos = [];
+
+//привязка кнопок
+let btnAdd = document.getElementsByClassName('buttonSave')[0];
+let btnRefresh = document.getElementsByClassName('buttonRefresh')[0];
+let btnFilterAll = document.getElementsByClassName('filterAll')[0];
+let btnFilterInProgress = document.getElementsByClassName('filterInProgress')[0];
+let btnFilterComplete = document.getElementsByClassName('filterComplete')[0];
+let btnDeleteAll = document.getElementsByClassName('deleteAll')[0];
+
+//назначение обработчиков кнопкам
+btnAdd.onclick = addTask;
+btnRefresh.onclick = () => refreshList(FILTER_MODE_ALL_TASKS);
+btnFilterAll.onclick = () => refreshList(FILTER_MODE_ALL_TASKS);
+btnFilterInProgress.onclick = () => refreshList(FILTER_MODE_INPROGRESS_TASKS);
+btnFilterComplete.onclick = () => refreshList(FILTER_MODE_COMPLETE_TASkS);
+btnDeleteAll.onclick = deleteAll;
+
+//конструктор заданий
+function task(dateOfCreate, dateOfOut, caption, statusFlag){
+    this.dateOfCreate = dateOfCreate;
+    this.dateOfOut = dateOfOut;
+    this.caption = caption;
+    this.statusFlag = statusFlag;
+}
 
 function makeTaskWithButtons(){
     let todosDom = document.getElementsByClassName('listTodos')[0];
@@ -64,18 +80,24 @@ function refreshList(filterMode){
 
     //рисуем все задания
     for (currentTask in todos){
-        if(filterMode === FILTER_MODE_ALL_TASKS){
-            makeTaskWithButtons();
-        } else if(filterMode === FILTER_MODE_INPROGRESS_TASKS){
-            if(todos[currentTask].statusFlag === 'В процессе'){
+        switch(filterMode){
+            case FILTER_MODE_ALL_TASKS:
                 makeTaskWithButtons();
-            }
-        } else if(filterMode === FILTER_MODE_COMPLETE_TASkS){
-            if(todos[currentTask].statusFlag === 'Выполнено'){
-                makeTaskWithButtons();
-            }
+                break;
+            case FILTER_MODE_INPROGRESS_TASKS:
+                if(todos[currentTask].statusFlag === 'В процессе'){
+                    makeTaskWithButtons();
+                }
+                break;
+            case FILTER_MODE_COMPLETE_TASkS:
+                if(todos[currentTask].statusFlag === 'Выполнено'){
+                    makeTaskWithButtons();
+                }
+                break;
+            default:
+                sendMessage('Непредвиденная ошибка');
         }
-    }
+    } 
 }
 
 function addTask(){
@@ -83,8 +105,13 @@ function addTask(){
     const dateOfOut = document.getElementsByClassName('dateOfOut')[0].value;
     const caption = document.getElementsByClassName('caption')[0].value;
     const statusFlag = document.getElementsByClassName('statusFlag')[0].value;   
-    const newTask = new task(dateOfCreate,dateOfOut,caption,statusFlag);
 
+    if((dateOfCreate == '') || (dateOfOut == '') || (caption == '') || (statusFlag == '')){
+        sendMessage("Поля ввода не должны быть пустыми");
+        return;
+    }
+    
+    const newTask = new task(dateOfCreate,dateOfOut,caption,statusFlag);
     todos.push(newTask);
     refreshList(FILTER_MODE_ALL_TASKS);
 }
@@ -136,4 +163,13 @@ function deleteAll(){
         }
         todos.splice(0,todos.length);
     }
+}
+
+function sendMessage(message){
+    let dialogMessageDom = document.getElementsByClassName('dialogMessage')[0];
+    dialogMessageDom.innerText = message;
+    dialogMessageDom.classList = "dialogMessage";
+    setTimeout(function(){
+        dialogMessageDom.classList.add('hidden');
+    },1000)
 }
