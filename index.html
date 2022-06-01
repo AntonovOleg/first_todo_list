@@ -1,26 +1,39 @@
 <html>
     <head>
-        <title>Список дел v0.1</title>
-        <script src="main.js"></script>
+        <title>Список дел v0.2</title>
         <link rel="stylesheet" href="style.css">
-        <link rel="stylesheet" href="customLibs/custom_ul_li.css">       
+        <link rel="stylesheet" href="customStyles/custom_ul_li.css">    
+        <link rel="stylesheet" href="customStyles/customButtons.css">   
     </head>
     <body>
-        <input type="text" class="dateOfCreate" value="" placeholder="Дата создания">
-        <input type="text" class="dateOfOut" value="" placeholder="Срок выполнения">
-        <input type="text" class="caption" value="" placeholder="Наименование">
-        <input type="text" class="statusFlag" value="Не выполен" placeholder="Статус задания">
-        <button class="button_save" onclick="addTask()">Добавить</button>
-        <button onclick="refresh()">Обновить</button>
-        <br>
-        <div class="panel">
-            <button class="filter_all" onclick="refreshList(0)">Показать все</button>
-            <button class="filter_inProgress" onclick="refreshList(1)">Показать выполняемые</button>
-            <button class="filter_complete" onclick="refreshList(2)">Показать выполненные</button>
-            <button class="delete_all" onclick="deleteAll()">Удалить все</button>
+        <div class="contentWrapper">
+            <div class="content center">
+                <div class="top_title">
+                    Планировщик дел
+                </div>
+                <input type="text" class="dateOfCreate" value="" placeholder="Дата создания">
+                <input type="text" class="dateOfOut" value="" placeholder="Срок выполнения">
+                <input type="text" class="caption" value="" placeholder="Наименование">
+                <input type="text" class="statusFlag" value="Не выполен" placeholder="Статус задания">
+                <a class="buttonSave gradient-button">Добавить</a>
+                <a class="buttonRefresh gradient-button">Обновить</a>   
+                <br>
+                <div class="panel center">
+                    Фильтры:
+                    <button class="filterAll">Показать все</button>
+                    <button class="filterInProgress">Показать выполняемые</button>
+                    <button class="filterComplete">Показать выполненные</button>
+                    <br>
+                    <div>
+                        <button class="deleteAll">Удалить все</button>
+                    </div>
+                </div>
+                <br>
+                <ul class="listTodos list1a">
+                </ul>
+                <div class="dialogMessage hidden"></div>
+            </div>
         </div>
-        <br>
-        <ul class="listTodos list1a">
-        </ul>
+        <script src="main.js"></script>
     </body>
 </html>

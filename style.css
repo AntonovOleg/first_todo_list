@@ -1,14 +1,84 @@
 button{
     height: 20px;
+    cursor: pointer;
+}
+
+a{
+    cursor: pointer;
+}
+
+li{
+    text-align: center;
+}
+
+li > button{
+    margin-left:10px;
+    width: 85px;
+}
+
+input{
+    height: 30px;
 }
 
 .panel{
-    background-color: gray;
+    background-color: #02b76b;
     width: fit-content;
     margin:5px;
     padding:5px;
+    color:white;
+    border: 2px solid black;
 }
 
 .task{
     margin: 5px;
+}
+
+.dialogMessage{
+    background-color: greenyellow;
+    height: auto;
+    align-content: center;
+    text-align: center;
+    vertical-align:middle;
+    font-size: 22;
+    opacity:100%;
+    transition: 0.5s;
+}
+
+.hidden{
+    opacity:0; 
+    transition: 1s;
+}
+
+.contentWrapper{
+    align-content: center;
+    background-color: rgb(207, 207, 207);
+    min-height: 100%;
+}
+
+.content{
+    width: 60%;
+    background-color: rgb(226, 243, 223); 
+    padding:20px;
+    border: 1px solid green;
+}
+
+.center{
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.top_title{
+    text-align: center;
+    margin: 0px;;
+    padding:10px;
+    font-size: 26;
+}
+
+.deleteAll{
+    background-color: rgb(165, 0, 0);
+    margin-top: 7px;
+    margin-right: 0px;
+    color:azure;
+    width:100px;
+    float: right;
 }
